@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:english_words/english_words.dart';
 
 void main() {
   runApp(MyApp());
@@ -65,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final wordPair = WordPair.random();
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -98,7 +100,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Can you feel my hearbeat rise as you push the button:',
+              'Click the + and see the number gets increased'+ '\n' +
+              wordPair.asPascalCase
             ),
             Text(
               '$_counter',
