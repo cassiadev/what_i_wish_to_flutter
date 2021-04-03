@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'What I Wish To Flutter',
+      title: 'what_i_wish_to_flutter',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: RandomWords()//MyHomePage(title: 'What I Wish To Flutter'),
+      home: MyHomePage(title: 'What I Wish to Flutter'),
     );
   }
 }
@@ -101,11 +101,24 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'Push (+) to increase the number'+ '\n'
             ),
-            RandomWords(),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            ElevatedButton(
+              child: Text('Move to the Words list page',),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.teal,
+                onPrimary: Colors.white,
+                onSurface: Colors.grey,
+                shadowColor: Colors.red,
+              ),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                  return RandomWords();
+                }));
+              },
+            )
           ],
         ),
       ),
@@ -131,9 +144,28 @@ class _RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('What I wish to Flutter - Scroll'),
+        title: Text('Random Words - scroll'),
       ),
-      body: _buildSuggestions(),
+      body: Column(
+        children: <Widget>[
+          ElevatedButton(
+            child: Text('Go back to main page',),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.teal,
+              onPrimary: Colors.white,
+              onSurface: Colors.grey,
+              shadowColor: Colors.red,
+              elevation: 5,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          Flexible(
+              child: _buildSuggestions()
+          )
+        ],
+      )
     );
   }
 
